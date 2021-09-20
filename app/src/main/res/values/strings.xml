@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">taskSharedPreferences</string>
+    <string name="text"></string>
+</resources>
