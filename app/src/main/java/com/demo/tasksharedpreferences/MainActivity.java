@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    ArrayList<Person> person = new ArrayList<>();
     private TextView textView;
     private TextView textView2;
     private EditText editTextName;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private String fullname;
     private ArrayList<TextView> getValues = new ArrayList<>();
     private ArrayList<String> setValues = new ArrayList<>();
-    ArrayList<Person> person = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +46,19 @@ public class MainActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         init();
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initValues();
-                setName(name, surname);
-
-            }
+        buttonSave.setOnClickListener(view -> {
+            initValues();
+            setName(name, surname);
         });
     }
 
+    private void init() {
 
-
-    private void init(){
-
-        setName(preferences.getString(SAVED_NAME,"empty name"),preferences.getString(SAVED_SURNAME,"empty surname"));
+        setName(preferences.getString(SAVED_NAME, "empty name"), preferences.getString(SAVED_SURNAME, "empty surname"));
 
     }
 
-    private void setName(String name, String surname){
+    private void setName(String name, String surname) {
 //        setValues.add(fullname);
 //        for (int i = 0; i<setValues.size(); i++){
 //            getValues.get(i).setText(setValues.get(i));
@@ -76,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
         textView.setText(name);
         textView2.setText(surname);
-        person.add(new Person(name,surname));
-        editor.putString(SAVED_NAME,name);
-        editor.putString(SAVED_SURNAME,surname);
+        person.add(new Person(name, surname));
+        editor.putString(SAVED_NAME, name);
+        editor.putString(SAVED_SURNAME, surname);
         editor.commit();
     }
 
@@ -96,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-
 
 
 //    private void setValues(String name, String surname){
